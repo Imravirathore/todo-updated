@@ -1,6 +1,6 @@
 import React from 'react'
 
-function App() {
+function Todo() {
   const [text, setText] = React.useState<string>('')
   const [todoList, setTodoList] = React.useState<string[]>([])
 
@@ -59,4 +59,4 @@ function App() {
   );
 }
 
-export default App;
+export default Todo;
