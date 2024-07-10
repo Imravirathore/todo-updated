@@ -1,65 +1,70 @@
 import React, { useState } from 'react'
 
 interface formData {
-    username:string;
-    password:string
+    username: string;
+    password: string;
+    gender: string;
 }
 
 const Form = () => {
 
-    const [userData , setUserData] = useState({
+    const [userData, setUserData] = useState({
         name: '',
-        password:''
+        password: '',
+        gender: ''
     })
 
     // Handle Change
-    const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=> {
-        // const name = e.target.name;
-        // const value = e.target.value;
-        // console.log('user data', name, value)
-
-        setUserData({  ...userData, [e.target.name]: e.target.value
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setUserData({
+            ...userData, [e.target.name]: e.target.value
         })
-
     }
-    
+
 
     // OnSubmit
-const handleSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
-    e.preventDefault();   
-    // console.log('user data', userData)
-    console.log('user data', userData)
-
-}
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log('user data', userData)
+    }
 
 
-  return (
-    <>
-          <h1> Form Example</h1>
+    return (
+        <>
+            <h1> Form Example</h1>
 
-          <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label>User Name </label>
-                <input type="text" 
-                placeholder='enter user name' 
-                value={userData.name} 
-                onChange={handleChange} 
-                name='name'
+                <input type="text"
+                    placeholder='enter user name'
+                    value={userData.name}
+                    onChange={handleChange}
+                    name='name'
                 />
-    <br/>
+                <br />
                 <label>password Name </label>
-                <input 
-                type="password"
-                 placeholder='enter password'
-                 value={userData.password}
-                onChange={handleChange}
-                name='password'
-                 />
-                <br/>
-
+                <input
+                    type="password"
+                    placeholder='enter password'
+                    value={userData.password}
+                    onChange={handleChange}
+                    name='password'
+                />
+                <br />
+                <label>Gender </label>
+                <select
+                    value={userData.gender}
+                    onChange={handleChange}
+                    name='gender'
+                >
+                    <option>Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
                 <button type='submit'>Submit</button>
-          </form>
-    </>
-  )
+            </form>
+        </>
+    )
 }
 
 export default Form
